@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Create products</title>{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="/static/css/interface_rolls.css">{% endblock %}
+
+
+{% block body %}
+
+<div class="messages">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <br>
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+</div>
+<div class="interface_rolls">
+    <img src="/static/img/logo_Programming JM.png">
+    <h1>Create products</h1>
+    <form action="/create_product" method="POST">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="nombre">
+        </div>
+        <div class="form-group">
+            <label for="valor">Valor</label>
+            <input type="number" class="form-control" name="valor" id="valor">
+        </div>
+        <div class="form-group">
+            <label for="cantidad">Cantidad</label>
+            <input type="number" class="form-control" name="cantidad" id="cantidad">
+        </div>
+        <br>
+        <input type="submit" class="btn btn-primary" value="Save">
+        <br>
+    </form>
+</div>
+
+{% endblock %}

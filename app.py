@@ -7,8 +7,10 @@ from config import config
 from Models.ModelRoll import ModelRoll
 from Models.ModelsTable import ModelTable
 from Models.ModelPuc import ModelPuc
+from Models.ModelProducts import ModelProducts
 
 # Entities:
+from Entities.Products import Products
 
 
 app = Flask(__name__)
@@ -73,6 +75,26 @@ def interfaceShowPuc():
 def ShowTablePuc(cuenta):
     datos = ModelPuc.showTablePuc(db, nameTable=cuenta)
     return render_template('show_table_puc.html', datos=datos, cuenta=cuenta)
+
+
+@app.route('/interface_create_products')
+def interfaceCreateProducts():
+    return render_template('interface_create_products.html')
+
+
+@app.route('/create_product', methods=['POST'])
+def createProduct():
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        valor = request.form['valor']
+        cantidad = request.form['cantidad']
+        producto = Products(nombre, valor, cantidad)
+        ModelProducts.insertProduct(db, producto)
+        flash('Product was saved successfully')
+        return redirect(url_for('index'))
+    else:
+        flash('there was an error, please check')
+        return redirect(url_for('index'))
 
 
 def status_401(error):
