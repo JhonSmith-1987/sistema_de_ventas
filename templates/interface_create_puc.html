@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Create PUC</title>{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="/static/css/interface_create_puc.css">{% endblock %}
+
+
+{% block body %}
+
+<div class="messages">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <br>
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+</div>
+<div class="interface_rolls">
+    <img src="/static/img/logo_Programming JM.png">
+    <h1>Create PUC</h1>
+    <form action="/create_puc" method="POST">
+        <div class="form-group">
+          <label for="cuenta">Cuenta</label>
+          <input type="text" class="form-control" name="cuenta" id="cuenta">
+        </div>
+        <div class="form-group">
+            <label for="codigo">Codigo</label>
+            <input type="number" class="form-control" name="codigo" id="codigo">
+          </div>
+        <br>
+        <input type="submit" class="btn btn-primary" value="Save">
+        <br>
+    </form>
+</div>
+
+{% endblock %}

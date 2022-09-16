@@ -1,0 +1,23 @@
+.interface_rolls{
+    width: 50%;
+    margin: auto;
+    margin-top: 80px;
+}
+
+.btn{
+    display: block;
+    width: 70px;
+    margin: auto;
+}
+
+img{
+    display: block;
+    margin: auto;
+    border-radius: 100%;
+}
+
+h1{
+    text-align: center;
+    color: blue;
+    margin-top: 30px;
+}

@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Administrator</title>{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="/static/css/style.css">{% endblock %}
+
+
+{% block body %}
+
+<div class="messages">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <br>
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+</div>
+<div class="imagen">
+    <img src="/static/img/logo_Programming JM.png" class="img_logo">
+    <h1 class="titulo1">Sistema de ventas</h1>
+</div>
+
+{% endblock %}

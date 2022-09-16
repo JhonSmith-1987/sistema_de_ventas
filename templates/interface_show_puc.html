@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Interface show Rolls</title>{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="/static/css/interface_show_rolls.css">{% endblock %}
+
+
+{% block body %}
+
+<div class="messages">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <br>
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+</div>
+<div class="interface_show_rolls">
+    <img src="/static/img/logo_Programming JM.png">
+    <h1>PUC</h1>
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Cuenta</th>
+                <th>Codigo</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for dato in datos %}
+                <tr>
+                    <td scope="row">{{dato.1}}</td>
+                    <td scope="row">{{dato.2}}</td>
+                    <td><a class="btn btn-primary" href="/show_table_puc/{{dato.1}}" role="button">Go</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+</div>
+
+{% endblock %}
