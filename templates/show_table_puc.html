@@ -26,6 +26,8 @@
     <table class="table table-striped table-inverse table-responsive">
         <thead class="thead-inverse">
             <tr>
+                <th>Fecha</th>
+                <th>Detalle</th>
                 <th>Debe</th>
                 <th>Haber</th>
             </tr>
@@ -33,8 +35,10 @@
             <tbody>
                 {% for dato in datos %}
                 <tr>
-                    <td scope="row">{{dato.0}}</td>
-                    <td>{{dato.1}}</td>
+                    <td scope="row">{{dato.1}}</td>
+                    <td>{{dato.2}}</td>
+                    <td>{{dato.3}}</td>
+                    <td>{{dato.4}}</td>
                 </tr>
                 {% endfor %}
             </tbody>

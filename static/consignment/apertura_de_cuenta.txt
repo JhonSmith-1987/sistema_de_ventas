@@ -1,0 +1,4 @@
+
+   Fecha: 2022-09-16
+   Detalle: apertura_de_cuenta
+   Valor: 50000000

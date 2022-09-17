@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
 
+from datetime import date
 from config import config
 
 # Models:
@@ -8,6 +9,8 @@ from Models.ModelRoll import ModelRoll
 from Models.ModelsTable import ModelTable
 from Models.ModelPuc import ModelPuc
 from Models.ModelProducts import ModelProducts
+from Models.ModelTxt import ModelTxt
+
 
 # Entities:
 from Entities.Products import Products
@@ -75,6 +78,30 @@ def interfaceShowPuc():
 def ShowTablePuc(cuenta):
     datos = ModelPuc.showTablePuc(db, nameTable=cuenta)
     return render_template('show_table_puc.html', datos=datos, cuenta=cuenta)
+
+
+@app.route('/interface_consignment')
+def interfaceConsignment():
+    return render_template('interface_consignment.html')
+
+
+@app.route('/insert_consignment', methods=['POST'])
+def insertConsignment():
+    if request.method == 'POST':
+        detalle = request.form['detalle']
+        valor = request.form['valor']
+        fecha = date.today()
+        nombre = f'{detalle}.txt'
+        ModelTxt.createConsignment(fecha, detalle, valor)
+        ModelPuc.consignmentTable(db, nombre)
+        ModelPuc.consignment(db, detalle, valor)
+        flash('Consignment was saved successfully')
+        return redirect(url_for('index'))
+    else:
+        flash('there was an error, please check')
+        return redirect(url_for('index'))
+
+# ******************** productos *************************
 
 
 @app.route('/interface_create_products')
