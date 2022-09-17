@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
+from werkzeug.utils import secure_filename
+import os
 
 from datetime import date
 from config import config
@@ -101,6 +103,12 @@ def insertConsignment():
         flash('there was an error, please check')
         return redirect(url_for('index'))
 
+
+@app.route('/show_consignment')
+def ShowConsignment():
+    datos = ModelTxt.showConsignment(db)
+    return render_template('show_consignment.html', datos=datos)
+
 # ******************** productos *************************
 
 
@@ -115,7 +123,14 @@ def createProduct():
         nombre = request.form['nombre']
         valor = request.form['valor']
         cantidad = request.form['cantidad']
-        producto = Products(nombre, valor, cantidad)
+        file = request.files['file']
+        basepath = os.path.dirname(__file__)
+        filename = secure_filename(file.filename)
+        extension = os.path.splitext(filename)[1]
+        nuevo_nombre_file = nombre + extension
+        upload_path = os.path.join(basepath, 'static/img_products', nuevo_nombre_file)
+        file.save(upload_path)
+        producto = Products(nombre, valor, cantidad, imagen=nuevo_nombre_file)
         ModelProducts.insertProduct(db, producto)
         flash('Product was saved successfully')
         return redirect(url_for('index'))

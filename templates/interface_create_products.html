@@ -23,7 +23,7 @@
 <div class="interface_rolls">
     <img src="/static/img/logo_Programming JM.png">
     <h1>Create products</h1>
-    <form action="/create_product" method="POST">
+    <form action="/create_product" method="POST" enctype="multipart/form-data">
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <input type="text" class="form-control" name="nombre" id="nombre">
@@ -35,6 +35,11 @@
         <div class="form-group">
             <label for="cantidad">Cantidad</label>
             <input type="number" class="form-control" name="cantidad" id="cantidad">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="file">Imagen</label>
+          <input type="file" class="form-control-file" name="file" id="file">
         </div>
         <br>
         <input type="submit" class="btn btn-primary" value="Save">

@@ -12,6 +12,20 @@ class ModelTxt:
         file.write(f'   Valor: {valor}')
         file.close()
 
+    @classmethod
+    def showConsignment(cls, db):
+        try:
+            cursor = db.connection.cursor()
+            sql = f'SELECT * FROM consignaciones'
+            cursor.execute(sql)
+            data = cursor.fetchall()
+            if data != None:
+                return data
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+
 
 
 
